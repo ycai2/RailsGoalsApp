@@ -7,7 +7,7 @@ class GoalsController < ApplicationController
     @goal = Goal.new(goal_params)
     @goal.author_id = current_user.id
     if @goal.save
-      redirect_to user_url(@goal.author_id)
+      redirect_to goal_url(@goal.id)
     else
       flash.now[:errors] = @goal.errors.full_messages
       render :new
@@ -21,7 +21,7 @@ class GoalsController < ApplicationController
   def update
     @goal = Goal.find(params[:id])
     if @goal.update
-      redirect_to user_url(@goal.author_id)
+      redirect_to goal_url(@goal.id)
     else
       flash.now[:errors] = @goal.errors.full_messages
       render :edit

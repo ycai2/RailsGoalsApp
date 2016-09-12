@@ -1,1 +1,20 @@
-Goal
+<h1>Goal</h1>
+
+<h3>Title</h3>
+<p> <%= @goal.title %> </p>
+
+<h3>Details</h3>
+<p>
+  <%= @goal.details %>
+</p>
+
+<p>
+  <b>Visibility</b> <%= @goal.private ? "Private" : "Public" %>
+</p>
+
+<form action="<%= goal_url(@goal.id) %>" method="post">
+  <%= auth_token %>
+  <input type="hidden" name="_method" value="PATCH">
+  <input type="hidden" name="goal[completed]" value="true">
+  <input type="submit" value="Complete">
+</form>
